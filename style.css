@@ -1,0 +1,259 @@
+:root {
+  --deep: #07124a;
+  --mid:  #172a7a;
+  --accent:#2b47c9;
+  --white:#ffffff;
+  --muted:#9ac0ff;
+  --page-max:1100px;
+  --font-heading: 'Poppins', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: var(--font-heading);
+  color: #0b0b3b;
+  background: #fff;
+}
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 22px;
+  flex-wrap: wrap;
+}
+.hero-left {
+  flex: 0 0 48%;
+  text-align: center;
+}
+.hero-left img {
+  width: 100%;
+  max-width: 400px;
+}
+.hero-right {
+  flex: 1;
+}
+.brand-line {
+  font-size: 48px;
+  font-weight: 800;
+  color: #000;
+}
+.brand-line .masters {
+  color: #223fa9;
+}
+.subtitle {
+  font-size: 20px;
+  margin-top: 8px;
+}
+.cta {
+  display: inline-block;
+  margin-top: 14px;
+  background: linear-gradient(180deg,var(--accent),#1a37b8);
+  color: var(--white);
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* SERVICES */
+/* SERVICES SECTION */
+.services {
+  background: var(--deep); /* your deep blue variable */
+  padding: 60px 20px;
+}
+
+.services-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.services .box {
+  background: transparent; /* deep blue shows behind */
+  border: 2px solid var(--white);
+  color: var(--white);
+  padding: 30px; /* more breathing room inside box */
+  border-radius: 12px;
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 250px;
+  text-align: center;
+}
+
+.services .box-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--white);
+}
+
+.services .box-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.services .price {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 12px;
+  color: var(--white);
+}
+
+.services .pricing-note {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--white);
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .services-content {
+    flex-direction: column;
+  }
+}
+
+.muted {
+  color:chartreuse;
+}
+
+.muted3 {
+  color:aqua;
+}
+
+.muted-alt {
+  color:blueviolet;
+}
+
+/* SHIPPING */
+/* SHIPPING - styled like services */
+.shipping {
+  padding: 40px 20px;
+  background: var(--white);
+}
+
+.shipping .section-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--deep);
+}
+
+.shipping-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ship-box {
+  background: var(--deep);
+  color: var(--white);
+  padding: 16px;
+  border-radius: 12px;
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 250px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.ship-box h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ship-box p {
+  font-size: 14px;
+}
+
+@media (max-width: 768px) {
+  .shipping-options {
+    flex-direction: column;
+  }
+}
+
+/* INQUIRIES SECTION */
+.inquiries {
+  position: relative;
+  background: url('images/badmintonshot2.jpg') center/cover no-repeat; /* Change path as needed */
+  color: var(--white);
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.inquiries-overlay {
+  background: rgba(0, 0, 0, 0.55);
+  padding: 40px;
+  border-radius: 12px;
+  display: inline-block;
+  max-width: 700px;
+}
+
+.inquiries h2 {
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.inquiries p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.inquiries .cta {
+  background: linear-gradient(180deg,var(--accent),#1a37b8);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.06);
+}
+
+.inquiries .cta:hover {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .inquiries-overlay {
+    padding: 20px;
+  }
+}
+
+/* FOOTER */
+.site-footer {
+  background: var(--deep);
+  color: var(--white);
+  padding: 20px;
+}
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .services-content, .shipping-options {
+    flex-direction: column;
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+}
