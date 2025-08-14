@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tension Masters — Services & Shipping</title>
+  <meta name="description" content="Explore our badminton restringing services, pricing, shipping options, and send us an inquiry directly.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+
+    <!-- HERO DIFFERENT -->
+    <header class="hero services-hero">
+      <div class="hero-right">
+        <h1 class="brand-line">Our <span class="masters">Services</span></h1>
+        <p class="subtitle">Choose your stringing, shipping, and get back on court</p>
+      </div>
+    </header>
+
+    <!-- SERVICES SECTION -->
+    <section class="services">
+      <div class="services-content">
+        <div class="box">
+          <h3 class="box-title"><span class="muted">BG65</span> Titanium String</h3>
+          <p class="box-desc">Budget-friendly string balancing cost efficiency and durability.</p>
+          <div class="price">£15</div>
+          <div class="pricing-note">All prices include string and labour</div>
+        </div>
+        <div class="box">
+          <h3 class="box-title"><span class="muted-alt">BG80</span> Premium String</h3>
+          <p class="box-desc">Higher performance string enhancing control and power.</p>
+          <div class="price">£20</div>
+          <div class="pricing-note">All prices include string and labour</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHIPPING -->
+    <section class="shipping">
+      <h2 class="section-title">Shipping & Collection</h2>
+      <div class="shipping-options">
+        <div class="ship-box">
+          <h3 class="muted3">Standard Delivery</h3>
+          <p>£4 — without insurance</p>
+        </div>
+        <div class="ship-box">
+          <h3 class="muted-alt">Insured Delivery</h3>
+          <p>£10 — includes insurance</p>
+        </div>
+        <div class="ship-box">
+          <h3 class="muted3">Drop-off / Pick-up</h3>
+          <p>Free — from Etwall Leisure Centre</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INQUIRY FORM -->
+    <section class="inquiries">
+      <div class="inquiries-overlay">
+        <h2>Send an Inquiry</h2>
+        <form action="send-mail.php" method="POST" class="inquiry-form">
+          <label>Type of Strings
+            <select name="strings" required>
+              <option value="BG65">BG65 Titanium</option>
+              <option value="BG80">BG80 Premium</option>
+              <option value="Other">Other provinding your own strings</option>
+            </select>
+          </label>
+
+          <label>Number of Rackets
+            <input type="number" name="rackets" min="1" max="10" required>
+          </label>
+
+          <label>Delivery / Collection
+            <select name="delivery" required>
+              <option value="Pickup from Etwall Leisure Centre">Pick up / Drop off — Etwall and Hilton <area shape="" coords="" href="" alt=""> (Free)</option>
+              <option value="£10 Insured Delivery">£10 — up to £150 Insured Delivery</option>
+              <option value="£4 Non-Insured Delivery">£4 — Non-Insured Delivery</option>
+            </select>
+          </label>
+
+          <button type="submit" class="cta">Send Inquiry</button>
+        </form>
+      </div>
+      
+    </section>
+    <div class="fine-print">
+        <p>
+          *Shipping prices only account for the cost of shipping the item back to the customer.  
+          How items are delivered to us is the customer’s choice (e.g., drop-off at games or arranging their own shipping).
+        </p>
+      </div>
+      
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p><a href="index.html">← Back to Home</a></p>
+        <p>Email: bunnisz13@gmail.com | Phone: +44 7359 265035</p>
+      </div>
+    </footer>
+
+  </main>
+</body>
+</html>
