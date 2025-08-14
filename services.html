@@ -58,41 +58,88 @@
     </section>
 
     <!-- INQUIRY FORM -->
-    <section class="inquiries">
-      <div class="inquiries-overlay">
-        <h2>Send an Inquiry</h2>
-        <form action="send-mail.php" method="POST" class="inquiry-form">
-          <label>Type of Strings
-            <select name="strings" required>
-              <option value="BG65">BG65 Titanium</option>
-              <option value="BG80">BG80 Premium</option>
-              <option value="Other">Other provinding your own strings</option>
-            </select>
-          </label>
+    <!-- INQUIRY FORM -->
+<section class="inquiries">
+    <div class="inquiries-overlay">
+      <h2>Send an Inquiry</h2>
+      <form 
+        id="inquiry-form"
+        action="https://formspree.io/f/xldlvnzp" 
+        method="POST" 
+        class="inquiry-form"
+      >
+        <!-- Honeypot -->
+        <input type="text" name="_gotcha" style="display:none">
+        
+        <label>Type of Strings
+          <select name="strings" required>
+            <option value="BG65">BG65 Titanium</option>
+            <option value="BG80">BG80 Premium</option>
+            <option value="Other">Other — providing your own strings</option>
+          </select>
+        </label>
+  
+        <label>Number of Rackets
+          <input type="number" name="rackets" min="1" max="10" required>
+        </label>
+  
+        <label>Delivery / Collection
+          <select name="delivery" required>
+            <option value="Pickup from Etwall Leisure Centre">Pick up / Drop off — Etwall and Hilton (Free)</option>
+            <option value="£10 Insured Delivery">£10 — up to £150 Insured Delivery</option>
+            <option value="£4 Non-Insured Delivery">£4 — Non-Insured Delivery</option>
+          </select>
+        </label>
+  
+        <label>Your Email
+          <input type="email" name="email" placeholder="you@example.com" required>
+        </label>
+  
+        <label>Additional Message
+          <textarea name="message" rows="4" placeholder="Any special instructions?" required></textarea>
+        </label>
+  
+        <button type="submit" class="cta">Send Inquiry</button>
+      </form>
+      <p id="form-message" style="margin-top:10px; display:none; color:chartreuse; font-weight:bold;">
+        ✅ Your inquiry has been sent!
+      </p>
+    </div>
+  </section>
+  
+  <script>
+  document.getElementById('inquiry-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Stop normal form submission
+  
+    const form = event.target;
+    const formMessage = document.getElementById('form-message');
+  
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+  
+      if (response.ok) {
+        form.reset(); // Reset all form fields
+        formMessage.style.display = 'block'; // Show success message
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      alert('Error sending form. Please check your connection.');
+    }
+  });
+  </script>
+  
 
-          <label>Number of Rackets
-            <input type="number" name="rackets" min="1" max="10" required>
-          </label>
-
-          <label>Delivery / Collection
-            <select name="delivery" required>
-              <option value="Pickup from Etwall Leisure Centre">Pick up / Drop off — Etwall and Hilton <area shape="" coords="" href="" alt=""> (Free)</option>
-              <option value="£10 Insured Delivery">£10 — up to £150 Insured Delivery</option>
-              <option value="£4 Non-Insured Delivery">£4 — Non-Insured Delivery</option>
-            </select>
-          </label>
-
-          <button type="submit" class="cta">Send Inquiry</button>
-        </form>
-      </div>
-      
-    </section>
     <div class="fine-print">
-        <p>
-          *Shipping prices only account for the cost of shipping the item back to the customer.  
-          How items are delivered to us is the customer’s choice (e.g., drop-off at games or arranging their own shipping).
-        </p>
-      </div>
+      <p>
+        *Shipping prices only account for the cost of shipping the item back to the customer.  
+        How items are delivered to us is the customer’s choice (e.g., drop-off at games or arranging their own shipping).
+      </p>
+    </div>
       
     <!-- FOOTER -->
     <footer class="site-footer">
