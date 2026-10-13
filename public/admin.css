@@ -1,0 +1,172 @@
+/* Tension Masters — price manager */
+
+.admin { background: var(--ink); }
+.muted { color: var(--muted); font-size: 0.92rem; }
+.btn-sm { min-height: 40px; padding: 0 16px; font-size: 0.9rem; }
+
+/* Login */
+.admin-login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px var(--gutter);
+  background:
+    radial-gradient(50% 50% at 50% 20%, rgba(74, 102, 255, 0.3), transparent 70%),
+    var(--ink);
+}
+.login-card { width: 100%; max-width: 400px; display: grid; gap: 14px; }
+.login-card h1 { font-size: 1.8rem; margin-top: 12px; }
+.login-card .field { margin: 6px 0 0; }
+.login-error { color: #ff8a8a; font-size: 0.9rem; min-height: 1.2em; }
+
+/* Top bar */
+.admin-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(5, 11, 46, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.admin-bar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 68px; flex-wrap: wrap; padding-top: 10px; padding-bottom: 10px; }
+.admin-bar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.save-state { font-size: 0.85rem; color: var(--muted); }
+.save-state.dirty { color: #ffb347; }
+.save-state.dirty::before { content: "● "; }
+
+.admin-main { padding-top: 28px; padding-bottom: 80px; display: grid; gap: 20px; }
+
+.admin-notice {
+  padding: 14px 18px;
+  border-radius: 14px;
+  background: rgba(255, 179, 71, 0.1);
+  border: 1px solid rgba(255, 179, 71, 0.4);
+  font-size: 0.92rem;
+}
+
+.admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.admin-grid .admin-sale { grid-column: 1 / -1; }
+@media (max-width: 860px) { .admin-grid { grid-template-columns: 1fr; } }
+
+.admin-card {
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 20px;
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+.admin-card h2 { font-size: 1.2rem; margin-bottom: 4px; }
+.admin-card > .muted, .card-head .muted { margin-bottom: 18px; }
+.admin-card .field { margin-bottom: 0; }
+.admin-card .field small { font-size: 0.8rem; }
+.card-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; }
+.card-tools { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 16px; }
+.card-tools input {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(5, 11, 46, 0.55);
+  color: var(--white);
+  min-width: 200px;
+}
+
+.field-row.three { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 760px) { .field-row.three { grid-template-columns: 1fr; } }
+
+.admin-sale.is-on { border-color: rgba(255, 79, 154, 0.55); background: linear-gradient(135deg, rgba(255, 79, 154, 0.08), transparent 60%), var(--card); }
+.sale-fields { display: grid; gap: 14px; }
+
+/* Money input */
+.money {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(5, 11, 46, 0.55);
+  overflow: hidden;
+}
+.money:focus-within { border-color: var(--lime); box-shadow: 0 0 0 3px rgba(215, 255, 58, 0.18); }
+.money > span { padding: 0 0 0 14px; color: var(--muted); font-weight: 600; }
+.money.suffix > span { padding: 0 14px 0 0; white-space: nowrap; }
+.field .money input,
+.money input {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  min-height: 48px;
+  padding: 10px 14px 10px 6px;
+  width: 100%;
+  color: var(--white);
+  font-size: 1rem;
+}
+.money input:focus { outline: none; box-shadow: none; }
+
+/* Strings table */
+.table-wrap { overflow-x: auto; margin: 0 -8px; }
+.admin-table { width: 100%; border-collapse: collapse; min-width: 640px; }
+.admin-table th {
+  text-align: left;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+}
+.admin-table td { padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+.admin-table .num { text-align: right; }
+.admin-table td.num .money { width: 110px; margin-left: auto; }
+.admin-table td.num .money input { min-height: 40px; text-align: right; }
+.admin-table tr.is-hidden td:not(:first-child) { opacity: 0.4; }
+.admin-table input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--lime); cursor: pointer; }
+.admin-table .sale-col { display: none; }
+.admin-table.show-sale .sale-col { display: table-cell; }
+.string-name { display: grid; }
+.string-name strong { color: var(--white); font-weight: 600; }
+.string-name span { font-size: 0.8rem; color: var(--muted); }
+.cost { color: var(--muted); font-variant-numeric: tabular-nums; }
+.profit { font-weight: 700; font-variant-numeric: tabular-nums; }
+.profit.ok { color: var(--lime); }
+.profit.mid { color: #ffb347; }
+.profit.low { color: #ff8a8a; }
+.sale-cell { display: inline-flex; align-items: center; gap: 10px; color: #ff9cc6; font-weight: 600; }
+
+.star {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.star[aria-pressed="true"] { color: var(--lime); border-color: rgba(215, 255, 58, 0.5); background: rgba(215, 255, 58, 0.1); }
+
+.admin-foot { text-align: center; }
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translate(-50%, calc(100% + 40px));
+  padding: 14px 20px;
+  border-radius: 14px;
+  background: var(--lime);
+  color: var(--ink);
+  font-weight: 600;
+  box-shadow: var(--shadow);
+  transition: transform 0.35s var(--ease);
+  z-index: 200;
+  max-width: calc(100% - 32px);
+}
+.toast.show { transform: translate(-50%, 0); }
+.toast.error { background: #ff6b6b; color: #fff; }
+.admin-main > *, .admin-grid > *, .admin-card { min-width: 0; }
+@media (max-width: 560px) {
+  .admin-bar-actions { width: 100%; }
+  .admin-bar-actions #save { margin-left: auto; }
+}

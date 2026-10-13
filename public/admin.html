@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en-GB" class="no-js">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Price Manager — Tension Masters</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#050b2e">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23d7ff3a'/%3E%3Cellipse cx='16' cy='13' rx='7' ry='8.5' fill='none' stroke='%23050b2e' stroke-width='2.2'/%3E%3Cpath d='M16 21.5V28M12 13h8M16 6v13' stroke='%23050b2e' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preload" href="fonts/sora-latin-0.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin">
+
+  <!-- LOGIN -->
+  <main class="admin-login" id="login-view">
+    <form class="form-card login-card" id="login-form">
+      <a href="index.html" class="logo" aria-label="Tension Masters home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#050b2e" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="9.5" rx="6" ry="7"/><path d="M12 16.5V22M8 9.5h8M12 3.5v12M9 6.5h6M9 12.5h6"/></svg>
+        </span>
+        <span>Tension<em>Masters</em></span>
+      </a>
+      <h1>Price manager</h1>
+      <p class="muted">Change prices, run sales and pick popular strings.</p>
+      <div class="field">
+        <label for="password">Admin password</label>
+        <input type="password" id="password" autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      <p class="login-error" id="login-error" role="alert"></p>
+    </form>
+  </main>
+
+  <!-- PANEL -->
+  <div id="panel-view" hidden>
+    <header class="admin-bar">
+      <div class="container admin-bar-inner">
+        <a href="index.html" class="logo" aria-label="View website">
+          <span class="logo-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#050b2e" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="9.5" rx="6" ry="7"/><path d="M12 16.5V22M8 9.5h8M12 3.5v12M9 6.5h6M9 12.5h6"/></svg>
+          </span>
+          <span>Price <em>manager</em></span>
+        </a>
+        <div class="admin-bar-actions">
+          <span class="save-state" id="save-state">All changes saved</span>
+          <button type="button" class="btn btn-ghost btn-sm" id="logout">Log out</button>
+          <button type="button" class="btn btn-primary btn-sm" id="save">Save &amp; publish</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container admin-main">
+      <div class="admin-notice" id="storage-notice" hidden>
+        <strong>Saving isn’t set up yet.</strong> Add “Upstash for Redis” to this project in Vercel, then redeploy. You can still try changes here, but they won’t go live.
+      </div>
+
+      <div class="admin-grid">
+        <!-- STANDARD -->
+        <section class="admin-card">
+          <h2>Standard restrings</h2>
+          <p class="muted">String &amp; labour, per racket.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="price-BG65">BG65 Titanium</label>
+              <div class="money"><span>£</span><input type="number" id="price-BG65" data-std="BG65" min="0" step="0.01" inputmode="decimal"></div>
+            </div>
+            <div class="field">
+              <label for="price-BG80">BG80 Premium</label>
+              <div class="money"><span>£</span><input type="number" id="price-BG80" data-std="BG80" min="0" step="0.01" inputmode="decimal"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- EXTRAS -->
+        <section class="admin-card">
+          <h2>Extras</h2>
+          <p class="muted">Per racket.</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="fee-fourKnot">4-knot stringing</label>
+              <div class="money"><span>£</span><input type="number" id="fee-fourKnot" min="0" step="0.01" inputmode="decimal"></div>
+              <small class="muted">2-knot is always free.</small>
+            </div>
+            <div class="field">
+              <label for="fee-ownStrings">Labour (own strings)</label>
+              <div class="money"><span>£</span><input type="number" id="fee-ownStrings" min="0" step="0.01" inputmode="decimal" placeholder="Quote"></div>
+              <small class="muted">Leave blank to quote each time.</small>
+            </div>
+          </div>
+        </section>
+
+        <!-- SALE -->
+        <section class="admin-card admin-sale">
+          <div class="card-head">
+            <div>
+              <h2>Sale</h2>
+              <p class="muted" id="sale-summary">No sale running.</p>
+            </div>
+            <label class="toggle">
+              <input type="checkbox" id="sale-active">
+              <span class="toggle-track" aria-hidden="true"></span>
+              <span>Sale on</span>
+            </label>
+          </div>
+          <div class="sale-fields">
+            <p class="muted legal-hint">UK law: only show a sale against a price you’ve genuinely charged recently, and end the sale when you say it ends.</p>
+            <div class="field">
+              <label for="sale-label">Sale name <span class="hint">(shown in the banner)</span></label>
+              <input type="text" id="sale-label" maxlength="60" placeholder="e.g. Summer sale">
+            </div>
+            <div class="field-row three">
+              <div class="field">
+                <label for="sale-percent">Discount</label>
+                <div class="money suffix"><input type="number" id="sale-percent" min="0" max="90" step="1" inputmode="numeric"><span>% off</span></div>
+              </div>
+              <div class="field">
+                <label for="sale-scope">Applies to</label>
+                <select id="sale-scope">
+                  <option value="all">Everything</option>
+                  <option value="standard">BG65 &amp; BG80 only</option>
+                  <option value="custom">Build-your-own strings only</option>
+                  <option value="selected">Strings I tick below</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="sale-ends">Ends <span class="hint">(optional)</span></label>
+                <input type="date" id="sale-ends">
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- STRINGS -->
+      <section class="admin-card">
+        <div class="card-head">
+          <div>
+            <h2>Build-your-own strings</h2>
+            <p class="muted">Price = what the customer pays per racket. Profit = price − string cost. ★ = shown in “Popular”.</p>
+          </div>
+          <div class="card-tools">
+            <input type="search" id="filter" placeholder="Search strings…" aria-label="Search strings">
+            <button type="button" class="btn btn-ghost btn-sm" id="reset-prices">Reset to suggested</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Show</th>
+                <th>Popular</th>
+                <th>String</th>
+                <th class="num">Cost</th>
+                <th class="num">Price</th>
+                <th class="num">Profit</th>
+                <th class="num sale-col">On sale</th>
+              </tr>
+            </thead>
+            <tbody id="string-rows"></tbody>
+          </table>
+        </div>
+      </section>
+      <p class="muted admin-foot" id="updated-at"></p>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="strings.js"></script>
+  <script src="pricing.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

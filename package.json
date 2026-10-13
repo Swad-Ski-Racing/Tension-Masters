@@ -1,0 +1,6 @@
+{
+  "name": "tensionmasters",
+  "private": true,
+  "description": "Tension Masters — badminton restringing website",
+  "engines": { "node": ">=18" }
+}
