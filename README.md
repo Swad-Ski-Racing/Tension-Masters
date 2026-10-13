@@ -24,6 +24,6 @@ vercel.json        output folder + security headers
 ## Deploy
 
 1. Push this repo to GitHub and import it into the existing Vercel project (or connect the repo to it).
-2. Set up the price manager by following [ADMIN-SETUP.md](ADMIN-SETUP.md). Its storage needs a free Upstash Redis database.
+2. Set up the price manager by following [SETUP.md](SETUP.md). Its storage needs a free Neon Postgres database (or Upstash Redis).
 
-There's no build step: plain HTML, CSS and JS, plus one Node serverless function.
+There's no build step: plain HTML, CSS and JS, plus one Node serverless function (dependency: `@neondatabase/serverless`).

@@ -2,5 +2,8 @@
   "name": "tensionmasters",
   "private": true,
   "description": "Tension Masters — badminton restringing website",
-  "engines": { "node": ">=18" }
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@neondatabase/serverless": "1.0.2"
+  }
 }
